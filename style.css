@@ -1,0 +1,27 @@
+.heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.heading h1{
+	margin: 25px 0 0 0;
+}
+
+#fccStatus{
+	color:red;
+	margin-top: -10px;
+}
+
+.row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+img{
+	max-height: 125px;
+
+
+}
