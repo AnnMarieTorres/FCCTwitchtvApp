@@ -13,15 +13,36 @@
 	color:red;
 	margin-top: -10px;
 }
+.row #header .h3{
+	background: white;
+	max-width: 33%;
+	min-width: 33%;
+	justify-content: flex-end;
 
+}
 .row{
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
+	justify-content: space-between;
+	align-self: center;
+	border: 1px solid black;
+	border-radius: 50%
+	
+	background-color: pink;
+	margin: 0 5% 0 5%;
+}
+.row p{
+	max-width: 33%;
+	min-width: 33%;
+
+	justify-content: center;
+	
+	margin: 0 10px 0 10px;
 }
 img{
 	max-height: 125px;
-
+	
+	border-radius: 50%;
+	margin: 0 5% 0 5%;
 
 }

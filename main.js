@@ -12,9 +12,10 @@ $(document).ready(function(){
   			$("#fccStatus").html("Free Code Camp is Online!");
   		}
 	});
+	//end 1
 
 	var followerUrl="https://wind-bow.gomix.me/twitch-api/users/freecodecamp/follows/channels";
-
+	//getting list of followers
 	$.getJSON(followerUrl, function(data2){
 		for(var i=0; i<data2.follows.length;i++){
 			var displayName = data2.follows[i].channel.display_name;
@@ -23,7 +24,7 @@ $(document).ready(function(){
 		following.push('comster404');
 		following.push('brunofin');
 		following.push('ESL_SC2');
-
+		//if user dont exist
 		for(var x=0; x<following.length;x++){
 			var url2='https://wind-bow.gomix.me/twitch-api/users/'+following[x];
 
@@ -40,6 +41,7 @@ $(document).ready(function(){
 
 			});
 		}
+		//if follower online
 		for(var i=0; i<following.length;i++){
 			var onlineUrl = 'https://wind-bow.gomix.me/twitch-api/streams/'+following[i];
 			$.getJSON(onlineUrl,function(data4){
@@ -55,30 +57,37 @@ $(document).ready(function(){
 			});
 			
 		}
-		for(var i=0; i<following.length;i++){
-			var offlineUrl = 'https://wind-bow.gomix.me/twitch-api/streams/'+following[i];
-			var userUrl ='https://wind-bow.gomix.me/twitch-api/users/'+following[i];
+		//getting list of followers offline
+			
+		 following.forEach(function(follower) {
+			var offlineUrl = 'https://wind-bow.gomix.me/twitch-api/streams/'+follower;
+			var userUrl ='https://wind-bow.gomix.me/twitch-api/channels/'+follower+'?callback=?';
+			
+			console.log(follower);//gets correct user...
 			
 			$.getJSON(offlineUrl,function(data5){
-				console.log(following[i]);
+				console.log(follower);//does not get user info
+
 				if(data5.stream === null){
 					
-
+					console.log(data5);
 					$.getJSON(userUrl,function(data6){
-						console.log(userUrl);
+						
 						logo= data6.logo;
 						if(logo===null){
 							logo='https://s3-us-west-2.amazonaws.com/fcc.twitchtvjsonapp/img_noLogo.png';
 							}
 						name = data6.display_name;
+						if(data6.display_name!= null){
 						status= "Offline";
 						$("#followerInfo").prepend("<div class='row'>"+"<img src='"+logo+"'>"+"<p>"+name+"</p><p>"+status+"</p>");
+						}
 						});
 					
 				}
 			});
 			
-		}
+		});
 
 
 	});
